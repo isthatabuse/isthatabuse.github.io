@@ -311,112 +311,11 @@ var WPGroHo = {"my_hash":""};
 
 		<div style="display:none">
 	</div>
-		<!-- CCPA [start] -->
-		<script type="text/javascript">
-			( function () {
-
-				var setupPrivacy = function() {
-
-					document.addEventListener( 'DOMContentLoaded', function() {
-
-						// Minimal Mozilla Cookie library
-						// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie/Simple_document.cookie_framework
-						var cookieLib = window.cookieLib = {getItem:function(e){return e&&decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*"+encodeURIComponent(e).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=\\s*([^;]*).*$)|^.*$"),"$1"))||null},setItem:function(e,o,n,t,r,i){if(!e||/^(?:expires|max\-age|path|domain|secure)$/i.test(e))return!1;var c="";if(n)switch(n.constructor){case Number:c=n===1/0?"; expires=Fri, 31 Dec 9999 23:59:59 GMT":"; max-age="+n;break;case String:c="; expires="+n;break;case Date:c="; expires="+n.toUTCString()}return"rootDomain"!==r&&".rootDomain"!==r||(r=(".rootDomain"===r?".":"")+document.location.hostname.split(".").slice(-2).join(".")),document.cookie=encodeURIComponent(e)+"="+encodeURIComponent(o)+c+(r?"; domain="+r:"")+(t?"; path="+t:"")+(i?"; secure":""),!0}};
-
-						var setDefaultOptInCookie = function() {
-							var value = '1YNN';
-							var domain = '.wordpress.com' === location.hostname.slice( -14 ) ? '.rootDomain' : location.hostname;
-							cookieLib.setItem( 'usprivacy', value, 365 * 24 * 60 * 60, '/', domain );
-						};
-
-						var setCcpaAppliesCookie = function( value ) {
-							var domain = '.wordpress.com' === location.hostname.slice( -14 ) ? '.rootDomain' : location.hostname;
-							cookieLib.setItem( 'ccpa_applies', value, 24 * 60 * 60, '/', domain );
-						}
-
-						var maybeCallDoNotSellCallback = function() {
-							if ( 'function' === typeof window.doNotSellCallback ) {
-								return window.doNotSellCallback();
-							}
-
-							return false;
-						}
-
-						var usprivacyCookie = cookieLib.getItem( 'usprivacy' );
-
-						if ( null !== usprivacyCookie ) {
-							maybeCallDoNotSellCallback();
-							return;
-						}
-
-						var ccpaCookie = cookieLib.getItem( 'ccpa_applies' );
-
-						if ( null === ccpaCookie ) {
-
-							var request = new XMLHttpRequest();
-							request.open( 'GET', 'https://public-api.wordpress.com/geo/', true );
-
-							request.onreadystatechange = function () {
-								if ( 4 === this.readyState ) {
-									if ( 200 === this.status ) {
-
-										var data = JSON.parse( this.response );
-										var ccpa_applies = data['region'] && data['region'].toLowerCase() === 'california';
-
-										setCcpaAppliesCookie( ccpa_applies );
-
-										if ( ccpa_applies ) {
-											if ( maybeCallDoNotSellCallback() ) {
-												setDefaultOptInCookie();
-											}
-										}
-									} else {
-										setCcpaAppliesCookie( true );
-										if ( maybeCallDoNotSellCallback() ) {
-											setDefaultOptInCookie();
-										}
-									}
-								}
-							};
-
-							request.send();
-						} else {
-							if ( ccpaCookie === 'true' ) {
-								if ( maybeCallDoNotSellCallback() ) {
-									setDefaultOptInCookie();
-								}
-							}
-						}
-					} );
-				};
-
-				if ( window.defQueue && defQueue.isLOHP && defQueue.isLOHP === 2020 ) {
-					defQueue.items.push( setupPrivacy );
-				} else {
-					setupPrivacy();
-				}
-
-			} )();
-		</script>
-
-		<!-- CCPA [end] -->
+		
 		
 
 
-<!--	<div class="widget widget_eu_cookie_law_widget">
-<div
-	class="hide-on-button ads-active"
-	data-hide-timeout="30"
-	data-consent-expiration="180"
-	id="eu-cookie-law"
->
-	<form method="post">
-		<input type="submit" value="Close and accept" class="accept" />
 
-		Privacy &amp; Cookies: This site uses cookies. By continuing to use this website, you agree to their use. <br />
-To find out more, including how to control cookies, see here:
-				<a href="https://automattic.com/cookies" rel="nofollow">
-			Cookie Policy		</a>-->
  </form>
 </div>
 </div>
